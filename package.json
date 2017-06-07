@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.13.4",
-    "serve-static": "^1.10.2",
-    "socket.io": "^1.4.6",
-    "spellbook": "0.0.84"
+    "express": "^4.15.3",
+    "serve-static": "^1.12.3",
+    "socket.io": "^2.0.2",
+    "spellbook": "0.1.22"
   },
   "devDependencies": {},
   "scripts": {
