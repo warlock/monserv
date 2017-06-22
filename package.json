@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "diskusage": "^0.2.2",
     "express": "^4.15.3",
     "serve-static": "^1.12.3",
     "socket.io": "^2.0.2",
