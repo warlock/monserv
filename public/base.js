@@ -1,5 +1,11 @@
 var socket = io.connect('http://localhost:4568')
-socket.on('stats', function(data) {
-  var data = document.getElementById('stats')
-  data.innerHTML = data.join("</br>")
+var div = document.getElementById('stats')
+
+socket.on('connect', function () {
+  console.log('conected')
+  socket.emit('info')
+})
+
+socket.on('stats', function (data) {
+  div.innerHTML = "<pre>" + JSON.stringify(data,null,2) + "</pre>"
 })

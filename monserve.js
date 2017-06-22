@@ -12,9 +12,7 @@ app.listen(conf.http_port, () => {
 
 io.attach(conf.socket_port)
 
-setInterval(() => {
-  console.log(JSON.stringify(nodes))
-}, 3000)
+var intervals = {}
 
 io.on('connection', socket => {
   console.log(`conected: ${socket.id}`)
@@ -27,12 +25,18 @@ io.on('connection', socket => {
     }
   })
 
-  socket.on('rec_data', data => {
-
+  socket.on('info', data => {
+    console.log('web-client online')
+    intervals[socket.id] = setInterval(() => {
+      io.to(socket.id).emit('stats', nodes)
+    }, 3000)
   })
 
   socket.on('disconnect', () => {
     if (!sb.empty(nodes[socket.id])) delete(nodes[socket.id])
+    if (!sb.empty(intervals[socket.id])) {
+      clearInterval(intervals[socket.id])
+    }
     console.log(`disconnected: ${socket.id}`)
   })
 })
