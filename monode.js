@@ -10,6 +10,7 @@ socket.on('connect', () => {
       if (err) console.error(err)
       socket.emit('stats', {
         key : conf.key,
+        date : new Date(),
         hostname : os.hostname(),
         freemem : os.freemem(),
         totalmem : os.totalmem(),

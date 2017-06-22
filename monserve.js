@@ -21,6 +21,7 @@ io.on('connection', socket => {
       console.log(`kick: ${socket.id}`)
       socket.disconnect()
     } else {
+      delete(data.key)
       nodes[socket.id] = data
     }
   })
