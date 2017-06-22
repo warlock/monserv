@@ -18,16 +18,12 @@ setInterval(() => {
 
 io.on('connection', socket => {
   console.log(`conected: ${socket.id}`)
-  socket.on('identify', data => {
+  socket.on('stats', data => {
     if (sb.empty(data.key) || sb.empty(data.hostname) || data.key !== conf.key) {
       console.log(`kick: ${socket.id}`)
       socket.disconnect()
     } else {
-      console.log(`identified: ${socket.id}`)
-      nodes[socket.id] = {
-        heartbeat : new Date(),
-        hostname : data.hostname
-      }
+      nodes[socket.id] = data
     }
   })
 
