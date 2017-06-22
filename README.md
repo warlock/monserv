@@ -2,23 +2,24 @@ MONSERV : STATUS SERVER
 ===
 >This project still in development
 
-INSTALL
+## INSTALL
 ```sh
 git clone https://github.com/warlock/monserv.git
 cd monserv
 npm i
 ```
 
-SERVER:
+## STATS SERVER:
 ```sh
 node monserve.js
 ```
 
+## CLIENT/NODE:
 ```sh
 node monode.js
 ```
 
-Web stats accesible with: http://localhost:3000
+## Web stats accesible with: http://localhost:3000
 
 Change configuration in 'conf.js'
 
