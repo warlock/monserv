@@ -7,6 +7,7 @@
     "express": "^4.15.3",
     "serve-static": "^1.12.3",
     "socket.io": "^2.0.2",
+    "socket.io-client": "^2.0.3",
     "spellbook": "0.1.22"
   },
   "devDependencies": {},
