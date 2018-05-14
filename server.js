@@ -36,6 +36,8 @@ app.set('view engine', 'pug')
 app.get('/', (req, res) => {
   res.render('index', { server: config.server, port: config.socket_port })
 })
-app.listen(config.http_port)
-console.log(`monserv - server: http://${config.http_port}`)
+app.listen(config.http_port, () => {
+  console.log(`monserv - server: ${config.server}:${config.http_port}`)
+})
+
 
