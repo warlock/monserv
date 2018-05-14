@@ -11,12 +11,12 @@ npm i
 
 ## STATS SERVER:
 ```sh
-node monserve.js
+node client.js
 ```
 
 ## CLIENT/NODE:
 ```sh
-node monode.js
+node server.js
 ```
 
 ## Web stats accesible with: http://localhost:3000

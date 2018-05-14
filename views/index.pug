@@ -1,0 +1,32 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    title monserv dashboard
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js')
+    script.
+      var servers = []
+      const socket = io.connect('#{server}:#{port}')
+      document.addEventListener('DOMContentLoaded', () => {
+        const main = document.getElementById('main')
+
+        socket.on('connect', () => {
+          console.log('connected')
+          socket.emit('stats', 'master')
+        })
+
+        socket.on('stats', (data) => {
+          main.innerText = JSON.stringify(data)
+        })
+
+        socket.on('disconnect', () => {
+          console.log('disconnected')
+        })
+      })
+      
+      
+
+  body
+    #main

@@ -1,13 +1,15 @@
 const server = require('http').createServer()
+const config = require('./config')
 const io = require('socket.io')(server)
+const express = require('express')
+const app = express()
 const allhosts = {}
 var master = ''
 
 setInterval(() => {
   if (master !== '') {
-    console.log('enviant a master: ' + master)
     io.to(master).emit('stats', allhosts)
-  } else console.log('no master')
+  }
 }, 3000)
 
 io.on('connection', (client) => {
@@ -16,25 +18,24 @@ io.on('connection', (client) => {
   client.on('stats', (data) => {
     if (data === 'master') {
       master = client.id
-      console.log('set the master')
-    } else {
-      allhosts[data.hostname] = data
-    }
+      console.log(`master !!! ${client.id}`)
+    } else allhosts[client.id] = data
   })
 
   client.on('disconnect', () => {
     if (client.id === master) {
-      console.log('unset master')
       master = ''
+      console.log(`master ¡¡¡ ${client.id}`)
     } else console.log(`<- ${client.id}`)
   })
 })
 
-server.listen(3001)
+server.listen(config.socket_port)
 
-const express = require('express')
-const app = express()
-app.use('/',express.static('static'))
-app.listen(3000)
-console.log('master server')
+app.set('view engine', 'pug')
+app.get('/', (req, res) => {
+  res.render('index', { server: config.server, port: config.socket_port })
+})
+app.listen(config.http_port)
+console.log(`monserv - server: http://${config.http_port}`)
 

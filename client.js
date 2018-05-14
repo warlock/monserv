@@ -1,8 +1,8 @@
-const conf = require('./conf.js')
+const config = require('./config.js')
 const os = require('os')
 const disk = require('diskusage')
 const io = require('socket.io-client')
-const socket = io(conf.server + ":" + conf.socket_port)
+const socket = io(config.server + ":" + config.socket_port)
 const term = require('./lib/term')
 const prettybytes = require('pretty-bytes')
 const moment = require('moment')
@@ -70,10 +70,12 @@ setInterval(() => {
 
 socket.on('connect', () => {
   active = true
-  console.log('clicon')
+  console.log('-> master online')
 })
 
 socket.on('disconnect', () => {
   active = false
-  console.log('clidisc')
+  console.log('<- master disconnected')
 })
+
+console.log('monserv - client')
