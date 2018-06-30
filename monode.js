@@ -10,17 +10,17 @@ socket.on('connect', () => {
     disk.check("/", (err, info) => {
       if (err) console.error(err)
       socket.emit('stats', {
-        key : conf.key,
-        date : new Date(),
-        hostname : os.hostname(),
-        freemem : os.freemem(),
-        totalmem : os.totalmem(),
-        loadavg : os.loadavg(),
-        network : os.networkInterfaces(),
-        platform : os.platform(),
-        relase : os.release(),
-        uptime : os.uptime(),
-        diskusage : info
+        key: conf.key,
+        date: new Date(),
+        hostname: os.hostname(),
+        freemem: os.freemem(),
+        totalmem: os.totalmem(),
+        loadavg: os.loadavg(),
+        network: os.networkInterfaces(),
+        platform: os.platform(),
+        relase: os.release(),
+        uptime: os.uptime(),
+        diskusage: info
       })
     })
   }, 2500)

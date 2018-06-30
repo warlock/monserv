@@ -1,15 +1,16 @@
 var exec = require('child_process').exec
 
 module.exports = function (cmd, timeout, callback) {
+  var proc
   if (typeof timeout === 'number') {
-    var proc = exec(cmd)
+    proc = exec(cmd)
     setTimeout(function () {
       callback("KILL", "")
       proc.kill('SIGHUP')
     }, 600000)
   } else {
     callback = timeout
-    var proc = exec(cmd)
+    proc = exec(cmd)
   }
 
   var list = []

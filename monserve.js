@@ -14,9 +14,9 @@ io.attach(conf.socket_port)
 
 var intervals = {}
 
-io.on('connection', socket => {
+io.on('connection', (socket) => {
   console.log(`-> conected: ${socket.id}`)
-  socket.on('stats', data => {
+  socket.on('stats', (data) => {
     if (sb.empty(data.key) || sb.empty(data.hostname) || data.key !== conf.key) {
       console.log(`x- kick: ${socket.id}`)
       socket.disconnect()
@@ -26,7 +26,7 @@ io.on('connection', socket => {
     }
   })
 
-  socket.on('info', data => {
+  socket.on('info', () => {
     intervals[socket.id] = setInterval(() => {
       io.to(socket.id).emit('stats', nodes)
     }, 3000)
